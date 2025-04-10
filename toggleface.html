@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <title>toggle Face</title>
+</head>
+
+<body>
+    <canvas id="face" width="200" height="200" style="background-color: yellow;border-radius: 50%;"></canvas>
+    <button onclick="Run()">Change face</button>
+    <script>
+        let flag = 0;
+
+        function DrawFace(isSmiling) {
+            canvas = document.getElementById("face");
+            b = canvas.getContext("2d");
+            b.clearRect(0, 0, canvas.width, canvas.height);
+            b.beginPath();
+            b.arc(60, 70, 15, 0, Math.PI * 2);
+            b.fillStyle = "Black";
+            b.fill();
+            b.stroke();
+            b.beginPath();
+            b.arc(140, 70, 15, 0, Math.PI * 2);
+            b.fillStyle = "Black";
+            b.fill();
+            b.stroke();
+            b.beginPath();
+            b.arc(100, isSmiling ? 130 : 150, 50, 0, Math.PI, !isSmiling);
+            b.stroke();
+        }
+
+        function Run() {
+            flag = 1 - flag;
+            DrawFace(flag === 0);
+        }
+        DrawFace(true);
+    </script>
+</body>
+
+</html>
